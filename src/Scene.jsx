@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ContactShadows, Environment, Float, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Float, OrbitControls } from "@react-three/drei";
 
 
 function Product({ color, roughness, metalness, wireframe, animate }) {
@@ -16,7 +16,7 @@ function Product({ color, roughness, metalness, wireframe, animate }) {
     <group ref={group}>
       <Float speed={animate ? 1.2 : 0} rotationIntensity={0.12} floatIntensity={0.15}>
         <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
-          <torusKnotGeometry args={[1.08, 0.32, 96, 16, 2, 3]} />
+          <torusKnotGeometry args={[1.08, 0.32, 64, 12, 2, 3]} />
           <meshStandardMaterial
             color={color}
             roughness={roughness}
@@ -59,12 +59,12 @@ export default function Scene(props) {
         position={[4, 5, 3]}
         intensity={2.2}
         castShadow
-        shadow-mapSize={[1024, 1024]}
+        shadow-mapSize={[512, 512]}
       />
       <pointLight position={[-3, 1, -2]} intensity={8} distance={8} />
       <Product {...props} />
       <ContactShadows position={[0, -1.8, 0]} opacity={0.4} scale={8} blur={2.5} far={4} />
-      <Environment preset="city" environmentIntensity={0.6} />
+      
       <OrbitControls
         enablePan={false}
         minDistance={3}
